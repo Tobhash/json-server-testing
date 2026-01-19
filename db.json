@@ -1,1 +1,130 @@
-{}
+{
+  "characters": [
+    {
+      "id": 1,
+      "firstName": "V",
+      "lastName": "Unknown",
+      "username": "merc_v",
+      "email": "v@nightcity.com",
+      "phone": "555-123-456",
+      "website": "mercenary-for-hire.com",
+      "role": "Mercenary",
+      "type": "freelancer",
+      "address": {
+        "street": "Megabuilding H10",
+        "suite": "Apt 1203",
+        "city": "Night City",
+        "zipcode": "NC-2077"
+      },
+      "company": {
+        "companyName": "Freelance Ops",
+        "taxNumber": "NC-123456789",
+        "companyPhone": "555-987-654"
+      },
+      "cyberware": ["Kiroshi Optics", "Gorilla Arms"],
+      "reputation": 75
+    },
+    {
+      "id": 2,
+      "firstName": "Johnny",
+      "lastName": "Silverhand",
+      "username": "jsilverhand",
+      "email": "johnny@samurai.com",
+      "phone": "555-666-777",
+      "website": "samurai.com",
+      "role": "Rockerboy",
+      "type": "legend",
+      "address": {
+        "street": "Afterlife",
+        "suite": "VIP Lounge",
+        "city": "Night City",
+        "zipcode": "NC-2077"
+      },
+      "company": {
+        "companyName": "Samurai",
+        "taxNumber": "NC-987654321",
+        "companyPhone": "555-111-222"
+      },
+      "cyberware": ["Relic"],
+      "reputation": 100
+    }
+  ],
+  "corporations": [
+    {
+      "id": 1,
+      "name": "Arasaka",
+      "industry": "Security",
+      "headquarters": "Tokyo",
+      "influence": 95,
+      "ceo": {
+        "firstName": "Saburo",
+        "lastName": "Arasaka",
+        "email": "saburo@arasaka.com",
+        "phone": "555-000-111"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Militech",
+      "industry": "Military",
+      "headquarters": "Washington, D.C.",
+      "influence": 90,
+      "ceo": {
+        "firstName": "Donald",
+        "lastName": "Lundee",
+        "email": "donald@militech.com",
+        "phone": "555-222-333"
+      }
+    }
+  ],
+  "missions": [
+    {
+      "id": 1,
+      "title": "The Heist",
+      "description": "Steal the Relic from Konpeki Plaza.",
+      "reward": 50000,
+      "status": "completed",
+      "location": {
+        "name": "Konpeki Plaza",
+        "city": "Night City",
+        "district": "Watson"
+      }
+    },
+    {
+      "id": 2,
+      "title": "Ghost Town",
+      "description": "Find Panam and help her with Nash.",
+      "reward": 20000,
+      "status": "in-progress",
+      "location": {
+        "name": "Rocky Ridge",
+        "city": "Badlands",
+        "district": "Outskirts"
+      }
+    },
+    {
+      "id": 3,
+      "title": "Dream On",
+      "description": "Investigate the mysterious surveillance of Jefferson Peralez.",
+      "reward": 30000,
+      "status": "pending",
+      "location": {
+        "name": "Jefferson's Apartment",
+        "city": "Night City",
+        "district": "City Center"
+      }
+    },
+    {
+      "id": 4,
+      "title": "Pyramid Song",
+      "description": "Join Judy Alvarez for a dive into the flooded town.",
+      "reward": 15000,
+      "status": "completed",
+      "location": {
+        "name": "Laguna Bend",
+        "city": "Badlands",
+        "district": "Coastal Region"
+      }
+    }
+  ]
+}
