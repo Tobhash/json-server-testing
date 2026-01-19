@@ -1,0 +1,253 @@
+{
+  "info": {
+    "_postman_id": "63b4c51c-ed72-440b-96fc-9e52225be73b",
+    "name": "json-server-testing",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "GET",
+      "item": [
+        {
+          "name": "Get all characters",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "b5c8479c-959a-4d26-ac10-e3113e05d8cc",
+                "exec": [
+                  "const jsonResponse = pm.response.json();",
+                  "",
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Response is an array\", function () {",
+                  "    pm.expect(jsonResponse).to.be.an('array');",
+                  "});",
+                  "",
+                  "pm.test(\"Response array is not empty\", function () {",
+                  "    pm.expect(jsonResponse).to.not.be.empty;",
+                  "    pm.expect(jsonResponse.length).to.be.greaterThan(0);",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "616534ac-87ee-4a33-be50-12b9d753a78d",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3001/characters",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3001",
+              "path": [
+                "characters"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get one character",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "3e5a24bb-d1c5-4d4a-8af5-c14542428bd7",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Response is not empty\", function () {",
+                  "    pm.expect(pm.response.text()).to.not.be.empty;",
+                  "});",
+                  "",
+                  "pm.test(\"firstName property exists and has the value 'V'\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.firstName).to.exist;",
+                  "    pm.expect(jsonData.firstName).to.eql(\"V\");",
+                  "});",
+                  "",
+                  "pm.test(\"lastName property exists and has the value 'Unknown'\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.lastName).to.exist;",
+                  "    pm.expect(jsonData.lastName).to.eql(\"Unknown\");",
+                  "});",
+                  "",
+                  "pm.test(\"Response matches JSON schema\", function () {",
+                  "    const schema = {",
+                  "        \"type\": \"object\",",
+                  "        \"required\": [",
+                  "            \"id\", \"firstName\", \"lastName\", \"username\", \"email\", ",
+                  "            \"phone\", \"website\", \"role\", \"type\", \"address\", ",
+                  "            \"company\", \"cyberware\", \"reputation\"",
+                  "        ],",
+                  "        \"properties\": {",
+                  "            \"id\": {",
+                  "                \"type\": \"string\"",
+                  "            },",
+                  "            \"firstName\": {",
+                  "                \"type\": \"string\"",
+                  "            },",
+                  "            \"lastName\": {",
+                  "                \"type\": \"string\"",
+                  "            },",
+                  "            \"username\": {",
+                  "                \"type\": \"string\"",
+                  "            },",
+                  "            \"email\": {",
+                  "                \"type\": \"string\"",
+                  "            },",
+                  "            \"phone\": {",
+                  "                \"type\": \"string\"",
+                  "            },",
+                  "            \"website\": {",
+                  "                \"type\": \"string\"",
+                  "            },",
+                  "            \"role\": {",
+                  "                \"type\": \"string\"",
+                  "            },",
+                  "            \"type\": {",
+                  "                \"type\": \"string\"",
+                  "            },",
+                  "            \"address\": {",
+                  "                \"type\": \"object\",",
+                  "                \"required\": [\"street\", \"suite\", \"city\", \"zipcode\"],",
+                  "                \"properties\": {",
+                  "                    \"street\": {",
+                  "                        \"type\": \"string\"",
+                  "                    },",
+                  "                    \"suite\": {",
+                  "                        \"type\": \"string\"",
+                  "                    },",
+                  "                    \"city\": {",
+                  "                        \"type\": \"string\"",
+                  "                    },",
+                  "                    \"zipcode\": {",
+                  "                        \"type\": \"string\"",
+                  "                    }",
+                  "                }",
+                  "            },",
+                  "            \"company\": {",
+                  "                \"type\": \"object\",",
+                  "                \"required\": [\"companyName\", \"taxNumber\", \"companyPhone\"],",
+                  "                \"properties\": {",
+                  "                    \"companyName\": {",
+                  "                        \"type\": \"string\"",
+                  "                    },",
+                  "                    \"taxNumber\": {",
+                  "                        \"type\": \"string\"",
+                  "                    },",
+                  "                    \"companyPhone\": {",
+                  "                        \"type\": \"string\"",
+                  "                    }",
+                  "                }",
+                  "            },",
+                  "            \"cyberware\": {",
+                  "                \"type\": \"array\",",
+                  "                \"items\": {",
+                  "                    \"type\": \"string\"",
+                  "                }",
+                  "            },",
+                  "            \"reputation\": {",
+                  "                \"type\": \"number\"",
+                  "            }",
+                  "        }",
+                  "    };",
+                  "    ",
+                  "    pm.response.to.have.jsonSchema(schema);",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "c76a7936-e266-4567-baac-0f0980542724",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3001/characters/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3001",
+              "path": [
+                "characters",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get character by last name",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "624dc29f-c22e-4ae6-bed1-76bbd03a7f85",
+                "exec": [
+                  "const jsonResponse = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Response is not empty\", function () {\r",
+                  "    pm.expect(jsonResponse).to.not.be.empty;\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Response contains one character with lastName 'Silverhand'\", function () {\r",
+                  "    pm.expect(jsonResponse[0].lastName).to.equal(\"Silverhand\");\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "5bfdbdca-e884-464c-9765-e95821cd4191",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3001/characters?lastName=Silverhand",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3001",
+              "path": [
+                "characters"
+              ],
+              "query": [
+                {
+                  "key": "lastName",
+                  "value": "Silverhand"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "4590bd31-bb9f-45f3-9c3b-4fe345345d61"
+    }
+  ]
+}
