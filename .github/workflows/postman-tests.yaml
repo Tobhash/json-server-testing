@@ -1,0 +1,38 @@
+name: Run JSON Server and Postman Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Krok 1: Checkout repozytorium
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Krok 2: Zainstaluj Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      # Krok 3: Zainstaluj zależności
+      - name: Install dependencies
+        run: npm install
+
+      # Krok 4: Uruchom JSON Server w tle
+      - name: Start JSON Server
+        run: npx json-server --watch db.json --port 3001 &
+
+      # Krok 5: Zainstaluj Newman
+      - name: Install Newman
+        run: npm install -g newman
+
+      # Krok 6: Uruchom testy Postman za pomocą Newman
+      - name: Run Postman tests
+        run: newman run postman/postman/collections/json-server-testing.postman_collection.json
