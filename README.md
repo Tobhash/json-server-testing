@@ -43,6 +43,12 @@ npx json-server -p 3001 db.json
 
 The server will use the `db.json` file as its database.
 
+## Running Postman collection with newman
+
+```bash
+newman run postman/postman/collections/json-server-testing.postman_collection.json
+```
+
 ## Tools Used
 
 - **json-server**: A lightweight tool to create a REST API quickly.
