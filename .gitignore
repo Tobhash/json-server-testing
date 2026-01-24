@@ -141,3 +141,7 @@ vite.config.ts.timestamp-*
 # Github
 .github/*
 !.github/workflows/
+
+# Playwright test files
+playwright-ts/test-results/
+playwright-ts/test-reports/

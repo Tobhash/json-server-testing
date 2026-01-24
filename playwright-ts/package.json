@@ -1,0 +1,20 @@
+{
+  "name": "playwright-ts",
+  "version": "1.0.0",
+  "description": "A Playwright project focused on testing API requests.",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "dependencies": {
+    "playwright": "^1.0.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.0",
+    "@types/node": "^14.18.63",
+    "typescript": "^4.9.5"
+  },
+  "keywords": [],
+  "author": "Tobhash",
+  "license": "MIT"
+}
