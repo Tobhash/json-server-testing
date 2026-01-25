@@ -33,8 +33,12 @@ jobs:
       - name: Start JSON Server
         run: npx json-server --watch db-copy.json --port 3001 &
 
-      # Krok 6: Przejdź do folderu 'playwright-ts' i uruchom testy Playwright
-      - name: Run Playwright tests
+      # Krok 7: Zainstaluj Playwright
+      - name: Install Playwright Browsers
         run: |
           cd playwright-ts
-          npx playwright test
+          npx playwright install
+
+      # Krok 8: Uruchom testy Playwright
+      - name: Run Playwright tests
+        run: npx playwright test
