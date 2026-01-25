@@ -23,7 +23,9 @@ jobs:
 
       # Krok 3: Zainstaluj zależności
       - name: Install dependencies
-        run: npm install
+        run: |
+          npm install
+          npx playwright install
 
       # Krok 4: Wykonaj kopię pliku db.json
       - name: Copy db.json to db-copy.json
@@ -33,12 +35,8 @@ jobs:
       - name: Start JSON Server
         run: npx json-server --watch db-copy.json --port 3001 &
 
-      # Krok 7: Zainstaluj Playwright
-      - name: Install Playwright Browsers
+      # Krok 6: Uruchom testy Playwright
+      - name: Run Playwright tests
         run: |
           cd playwright-ts
-          npx playwright install
-
-      # Krok 8: Uruchom testy Playwright
-      - name: Run Playwright tests
-        run: npx playwright test
+          npx playwright test
