@@ -1,0 +1,36 @@
+name: Common Setup
+
+on:
+  workflow_call:
+    inputs:
+      port:
+        description: "Port for JSON Server"
+        required: true
+        default: 3001
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Copy db.json to db-copy.json
+      - name: Copy db.json to db-copy.json
+        run: cp db.json db-copy.json
+
+      # Step 5: Start JSON Server in the background
+      - name: Start JSON Server
+        run: npx json-server --watch db-copy.json --port ${{ inputs.port }} &

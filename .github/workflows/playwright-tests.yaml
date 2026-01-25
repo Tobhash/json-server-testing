@@ -1,0 +1,21 @@
+name: Run JSON Server and Playwright Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  test:
+    uses: ./.github/workflows/common-setup.yaml
+    with:
+      port: 3001
+
+  playwright:
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run Playwright tests
+        run: npx playwright test
