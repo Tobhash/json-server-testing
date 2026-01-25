@@ -7,6 +7,7 @@ on:
         description: "Port for JSON Server"
         required: true
         default: 3001
+        type: string
 
 jobs:
   setup:
