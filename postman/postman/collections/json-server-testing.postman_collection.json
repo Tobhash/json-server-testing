@@ -248,6 +248,176 @@
         }
       ],
       "id": "4590bd31-bb9f-45f3-9c3b-4fe345345d61"
+    },
+    {
+      "name": "POST",
+      "item": [
+        {
+          "name": "Add a mission",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "08e3bf02-7873-419d-ac02-8b2bcffe79a1",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "0f072b91-b823-42b6-bba6-67047d4585e4",
+                "exec": [
+                  "const json = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Status code is 201\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Title matches\", function () {\r",
+                  "    pm.expect(json.title).to.eql(\"TEST MISSON\");\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "07bd1f0c-6a8a-4085-b000-c756bb144c10",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"TEST MISSON\",\r\n    \"description\": \"Find a fixer who helps you with the Relic\",\r\n    \"reward\": 1337,\r\n    \"status\": \"pending\",\r\n    \"location\": {\r\n        \"name\": \"Konpeki Plaza\",\r\n        \"city\": \"Night City\",\r\n        \"district\": \"Watson\"\r\n    }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3001/missions",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3001",
+              "path": [
+                "missions"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "e9f2d8b5-098f-41f3-b315-9ee773bf5da0"
+    },
+    {
+      "name": "PUT",
+      "item": [
+        {
+          "name": "Update a mission",
+          "id": "722c9893-69b3-4bae-a0e2-6583d783ed95",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"PUT this mission\",\r\n    \"description\": \"Test PUT method\",\r\n    \"reward\": 2201,\r\n    \"status\": \"completed\",\r\n    \"location\": {\r\n      \"name\": \"Konpeki Plaza\",\r\n      \"city\": \"Night City\",\r\n      \"district\": \"Watson\"\r\n    }\r\n  }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3001/missions/ff54",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3001",
+              "path": [
+                "missions",
+                "ff54"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "28fda43f-3023-4631-899c-b75a1eeccb81"
+    },
+    {
+      "name": "Add a mission",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "08e3bf02-7873-419d-ac02-8b2bcffe79a1",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "0f072b91-b823-42b6-bba6-67047d4585e4",
+            "exec": [
+              "const json = pm.response.json();\r",
+              "\r",
+              "pm.test(\"Status code is 201\", function () {\r",
+              "    pm.response.to.have.status(201);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Title matches\", function () {\r",
+              "    pm.expect(json.title).to.eql(\"TEST MISSON\");\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "id": "07bd1f0c-6a8a-4085-b000-c756bb144c10",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"title\": \"TEST MISSON\",\r\n    \"description\": \"Find a fixer who helps you with the Relic\",\r\n    \"reward\": 1337,\r\n    \"status\": \"pending\",\r\n    \"location\": {\r\n        \"name\": \"Konpeki Plaza\",\r\n        \"city\": \"Night City\",\r\n        \"district\": \"Watson\"\r\n    }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3001/missions",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3001",
+          "path": [
+            "missions"
+          ]
+        }
+      },
+      "response": []
     }
   ]
 }
