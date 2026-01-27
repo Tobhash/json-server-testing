@@ -36,6 +36,18 @@
                 "packages": {},
                 "requests": {}
               }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "fdfb9e8c-c544-4e31-adde-3624c008554e",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
             }
           ],
           "id": "616534ac-87ee-4a33-be50-12b9d753a78d",
@@ -172,6 +184,18 @@
                 "packages": {},
                 "requests": {}
               }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "74c3b1ed-7085-42fb-8995-1f7754cb1199",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
             }
           ],
           "id": "c76a7936-e266-4567-baac-0f0980542724",
@@ -220,6 +244,18 @@
                 "packages": {},
                 "requests": {}
               }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "7a9f4fb0-fb73-4385-99c6-5dce046702d7",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
             }
           ],
           "id": "5bfdbdca-e884-464c-9765-e95821cd4191",
@@ -239,7 +275,8 @@
               "query": [
                 {
                   "key": "lastName",
-                  "value": "Silverhand"
+                  "value": "Silverhand",
+                  "uuid": "0146bb1a-21bd-4194-adf8-9ee97a640e99"
                 }
               ]
             }
@@ -323,14 +360,47 @@
       "name": "PUT",
       "item": [
         {
-          "name": "Update a mission",
-          "id": "722c9893-69b3-4bae-a0e2-6583d783ed95",
+          "name": "Create a test mission",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "08e3bf02-7873-419d-ac02-8b2bcffe79a1",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "0f072b91-b823-42b6-bba6-67047d4585e4",
+                "exec": [
+                  "const json = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Status code is 201\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "});\r",
+                  "\r",
+                  "pm.globals.set(\"putTestMissionId\", json.id);\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "be80b83e-b9ca-469f-8b66-f6b8cc924daa",
           "request": {
-            "method": "PUT",
+            "method": "POST",
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"title\": \"PUT this mission\",\r\n    \"description\": \"Test PUT method\",\r\n    \"reward\": 2201,\r\n    \"status\": \"completed\",\r\n    \"location\": {\r\n      \"name\": \"Konpeki Plaza\",\r\n      \"city\": \"Night City\",\r\n      \"district\": \"Watson\"\r\n    }\r\n  }",
+              "raw": "{\r\n    \"title\": \"TEST MISSON TOPIC\",\r\n    \"description\": \"TEST MISSON DESCIPTION\",\r\n    \"reward\": 0,\r\n    \"status\": \"pending\",\r\n    \"location\": {\r\n        \"name\": \"Konpeki Plaza\",\r\n        \"city\": \"Night City\",\r\n        \"district\": \"Watson\"\r\n    }\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -338,7 +408,72 @@
               }
             },
             "url": {
-              "raw": "http://localhost:3001/missions/ff54",
+              "raw": "http://localhost:3001/missions",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3001",
+              "path": [
+                "missions"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PUT edit a mission",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "e836cb71-d811-4f0f-b407-6332b5405a5f",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "48322c74-c51d-4df8-bb9c-4e7364ebaa46",
+                "exec": [
+                  "const json = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "pm.test(\"Your test name\", function () {\r",
+                  "    pm.expect(json.title).to.eql(\"PUT Update title\");\r",
+                  "    pm.expect(json.description).to.eql(\"PUT Update description\");\r",
+                  "    pm.expect(json.reward).to.eql(100);\r",
+                  "    pm.expect(json.status).to.eql('completed');\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "722c9893-69b3-4bae-a0e2-6583d783ed95",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"PUT Update title\",\r\n    \"description\": \"PUT Update description\",\r\n    \"reward\": 100,\r\n    \"status\": \"completed\",\r\n    \"location\": {\r\n      \"name\": \"Konpeki Plaza\",\r\n      \"city\": \"Night City\",\r\n      \"district\": \"Watson\"\r\n    }\r\n  }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3001/missions/{{putTestMissionId}}",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -346,7 +481,7 @@
               "port": "3001",
               "path": [
                 "missions",
-                "ff54"
+                "{{putTestMissionId}}"
               ]
             }
           },
@@ -354,6 +489,137 @@
         }
       ],
       "id": "28fda43f-3023-4631-899c-b75a1eeccb81"
+    },
+    {
+      "name": "PATCH",
+      "item": [
+        {
+          "name": "Create a test mission Copy",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "08e3bf02-7873-419d-ac02-8b2bcffe79a1",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "0f072b91-b823-42b6-bba6-67047d4585e4",
+                "exec": [
+                  "const json = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Status code is 201\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "});\r",
+                  "\r",
+                  "pm.globals.set(\"patchTestMissionId\", json.id);\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "0cf202b4-54bf-419b-8641-09d207cfa45b",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"TEST MISSON 2 TOPIC\",\r\n    \"description\": \"TEST MISSON 2 DESCIPTION\",\r\n    \"reward\": 0,\r\n    \"status\": \"pending\",\r\n    \"location\": {\r\n        \"name\": \"Konpeki Plaza\",\r\n        \"city\": \"Night City\",\r\n        \"district\": \"Watson\"\r\n    }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3001/missions",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3001",
+              "path": [
+                "missions"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PATCH edit a mission",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "7f654bc4-4543-48b5-98f5-ec5830090179",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "2e2f0326-2daa-4126-bc02-c14f680635cf",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "pm.test(\"Your test name\", function () {\r",
+                  "    var jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData.title).to.eql(\"PATCH Update title\");\r",
+                  "    pm.expect(jsonData.description).to.eql(\"PATCH Update description\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "5de9d337-b531-47ae-b84a-ac66f66d1c53",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"PATCH Update title\",\r\n    \"description\": \"PATCH Update description\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3001/missions/{{patchTestMissionId}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3001",
+              "path": [
+                "missions",
+                "{{patchTestMissionId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "e2529d38-90ce-43f7-afe2-13bb569c9329"
     },
     {
       "name": "Add a mission",
@@ -418,6 +684,13 @@
         }
       },
       "response": []
+    }
+  ],
+  "variable": [
+    {
+      "id": "0d82a4ff-b124-41b5-9908-c7a33a1c7a03",
+      "key": "baseURL",
+      "value": ""
     }
   ]
 }
