@@ -35,4 +35,4 @@ jobs:
 
       # Krok 6: Uruchom testy Postman za pomocą Newman
       - name: Run Postman tests
-        run: newman run postman/postman/collections/json-server-testing.postman_collection.json
+        run: newman run postman/postman/collections/json-server-testing.postman_collection.json -g postman/postman/globals/workspace.postman_globals.json
