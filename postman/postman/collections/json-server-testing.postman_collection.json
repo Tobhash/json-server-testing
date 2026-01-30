@@ -288,72 +288,7 @@
     },
     {
       "name": "POST",
-      "item": [
-        {
-          "name": "Add a mission",
-          "event": [
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "08e3bf02-7873-419d-ac02-8b2bcffe79a1",
-                "exec": [
-                  ""
-                ],
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {}
-              }
-            },
-            {
-              "listen": "test",
-              "script": {
-                "id": "0f072b91-b823-42b6-bba6-67047d4585e4",
-                "exec": [
-                  "const json = pm.response.json();\r",
-                  "\r",
-                  "pm.test(\"Status code is 201\", function () {\r",
-                  "    pm.response.to.have.status(201);\r",
-                  "});\r",
-                  "\r",
-                  "pm.test(\"Title matches\", function () {\r",
-                  "    pm.expect(json.title).to.eql(\"TEST MISSON\");\r",
-                  "});\r",
-                  ""
-                ],
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {}
-              }
-            }
-          ],
-          "id": "07bd1f0c-6a8a-4085-b000-c756bb144c10",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"title\": \"TEST MISSON\",\r\n    \"description\": \"Find a fixer who helps you with the Relic\",\r\n    \"reward\": 1337,\r\n    \"status\": \"pending\",\r\n    \"location\": {\r\n        \"name\": \"Konpeki Plaza\",\r\n        \"city\": \"Night City\",\r\n        \"district\": \"Watson\"\r\n    }\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "http://localhost:3001/missions",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "3001",
-              "path": [
-                "missions"
-              ]
-            }
-          },
-          "response": []
-        }
-      ],
+      "item": [],
       "id": "e9f2d8b5-098f-41f3-b315-9ee773bf5da0"
     },
     {
@@ -622,68 +557,170 @@
       "id": "e2529d38-90ce-43f7-afe2-13bb569c9329"
     },
     {
-      "name": "Add a mission",
-      "event": [
+      "name": "DELETE",
+      "item": [
         {
-          "listen": "prerequest",
-          "script": {
-            "id": "08e3bf02-7873-419d-ac02-8b2bcffe79a1",
-            "exec": [
-              ""
-            ],
-            "type": "text/javascript",
-            "packages": {},
-            "requests": {}
-          }
+          "name": "Create a test mission",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "08e3bf02-7873-419d-ac02-8b2bcffe79a1",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "0f072b91-b823-42b6-bba6-67047d4585e4",
+                "exec": [
+                  "const json = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Status code is 201\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "});\r",
+                  "\r",
+                  "pm.globals.set(\"deleteTestMissionId\", json.id);\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "e306f794-ed9e-45aa-96fa-f22bace2a140",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"TEST MISSON 2 TOPIC\",\r\n    \"description\": \"TEST MISSON 2 DESCIPTION\",\r\n    \"reward\": 0,\r\n    \"status\": \"pending\",\r\n    \"location\": {\r\n        \"name\": \"Konpeki Plaza\",\r\n        \"city\": \"Night City\",\r\n        \"district\": \"Watson\"\r\n    }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3001/missions",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3001",
+              "path": [
+                "missions"
+              ]
+            }
+          },
+          "response": []
         },
         {
-          "listen": "test",
-          "script": {
-            "id": "0f072b91-b823-42b6-bba6-67047d4585e4",
-            "exec": [
-              "const json = pm.response.json();\r",
-              "\r",
-              "pm.test(\"Status code is 201\", function () {\r",
-              "    pm.response.to.have.status(201);\r",
-              "});\r",
-              "\r",
-              "pm.test(\"Title matches\", function () {\r",
-              "    pm.expect(json.title).to.eql(\"TEST MISSON\");\r",
-              "});\r",
-              ""
-            ],
-            "type": "text/javascript",
-            "packages": {},
-            "requests": {}
-          }
+          "name": "DELETE existing mission",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "abab10e0-af83-4587-9613-d32153f76d61",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "660338e4-a88b-478b-9b43-1a33a1e2349b",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "447184a2-e29d-4e02-b7a2-7757d9e12b00",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3001/missions/{{deleteTestMissionId}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3001",
+              "path": [
+                "missions",
+                "{{deleteTestMissionId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE missing mission",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "abab10e0-af83-4587-9613-d32153f76d61",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "660338e4-a88b-478b-9b43-1a33a1e2349b",
+                "exec": [
+                  "pm.test(\"Status code is 404\", function () {\r",
+                  "    pm.response.to.have.status(404);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "af67e1b6-9b29-4c72-9635-a850447f5a5b",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3001/missions/{{deleteTestMissionId}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3001",
+              "path": [
+                "missions",
+                "{{deleteTestMissionId}}"
+              ]
+            }
+          },
+          "response": []
         }
       ],
-      "id": "07bd1f0c-6a8a-4085-b000-c756bb144c10",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n    \"title\": \"TEST MISSON\",\r\n    \"description\": \"Find a fixer who helps you with the Relic\",\r\n    \"reward\": 1337,\r\n    \"status\": \"pending\",\r\n    \"location\": {\r\n        \"name\": \"Konpeki Plaza\",\r\n        \"city\": \"Night City\",\r\n        \"district\": \"Watson\"\r\n    }\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "http://localhost:3001/missions",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3001",
-          "path": [
-            "missions"
-          ]
-        }
-      },
-      "response": []
+      "id": "666c0b2c-d7f7-4e32-86b6-c79faf88b1e9"
     }
   ],
   "variable": [
