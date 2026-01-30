@@ -721,6 +721,123 @@
         }
       ],
       "id": "666c0b2c-d7f7-4e32-86b6-c79faf88b1e9"
+    },
+    {
+      "name": "HEAD",
+      "item": [
+        {
+          "name": "HEAD request",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "78d74768-78a8-4fbd-b164-f1b1330b1af6",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "5a8332ba-88fe-4fe3-9f64-71d00cfd0b63",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Empty body\", function () {\r",
+                  "    pm.expect(pm.response.text()).to.eql(\"\");\r",
+                  "})"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "0137620f-3854-4d2f-a8df-d43e48f789ad",
+          "request": {
+            "method": "HEAD",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3001/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3001",
+              "path": [
+                ""
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "272da2c4-32ee-4f5c-a491-31b5f7706df3"
+    },
+    {
+      "name": "OPTIONS",
+      "item": [
+        {
+          "name": "OPTIONS request",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "c72edbc7-199a-47c7-aeff-71871d93e63e",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "id": "38711a46-3b98-431e-a76d-1c047d0bbfce",
+                "exec": [
+                  "pm.test(\"Status code is 204\", function () {\r",
+                  "    pm.response.to.have.status(204);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Access-Control-Allow-Methods is present\", function () {\r",
+                  "    pm.response.to.have.header(\"Access-Control-Allow-Methods\");\r",
+                  "    pm.expect(pm.response.headers.get(\"Access-Control-Allow-Methods\")).to.eql(\"GET, HEAD, PUT, PATCH, POST, DELETE\");\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "cb1237b2-820e-4013-b55a-00389f07a8c4",
+          "request": {
+            "method": "OPTIONS",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3001/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3001",
+              "path": [
+                ""
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "5d240991-606f-4219-a55f-a0b15a44c543"
     }
   ],
   "variable": [
