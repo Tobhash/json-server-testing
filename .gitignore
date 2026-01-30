@@ -145,3 +145,6 @@ vite.config.ts.timestamp-*
 # Playwright test files
 playwright-ts/test-results/
 playwright-ts/test-reports/
+
+# db-copy
+db-copy.json

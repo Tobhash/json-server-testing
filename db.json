@@ -21,7 +21,10 @@
         "taxNumber": "NC-123456789",
         "companyPhone": "555-987-654"
       },
-      "cyberware": ["Kiroshi Optics", "Gorilla Arms"],
+      "cyberware": [
+        "Kiroshi Optics",
+        "Gorilla Arms"
+      ],
       "reputation": 75
     },
     {
@@ -45,7 +48,9 @@
         "taxNumber": "NC-987654321",
         "companyPhone": "555-111-222"
       },
-      "cyberware": ["Relic"],
+      "cyberware": [
+        "Relic"
+      ],
       "reputation": 100
     }
   ],
@@ -125,6 +130,30 @@
         "city": "Badlands",
         "district": "Coastal Region"
       }
+    },
+    {
+      "id": 5,
+      "title": "Simple live or an interesting one",
+      "description": "Find a fixer who helps you with the Relic",
+      "reward": 1337,
+      "status": "pending",
+      "location": {
+        "name": "Konpeki Plaza",
+        "city": "Night City",
+        "district": "Watson"
+      }
+    },
+    {
+      "id": "ff54",
+      "title": "PUT this mission",
+      "description": "Test PUT method",
+      "reward": 2201,
+      "status": "completed",
+      "location": {
+        "name": "Konpeki Plaza",
+        "city": "Night City",
+        "district": "Watson"
+      }      
     }
   ]
 }

@@ -38,7 +38,7 @@ Before starting, ensure you have the following installed:
 To start the `json-server` on port `3001`, run the following command:
 
 ```bash
-npx json-server -p 3001 db.json
+npx json-server -p 3001 db-copy.json
 ```
 
 The server will use the `db.json` file as its database.
@@ -46,7 +46,7 @@ The server will use the `db.json` file as its database.
 ## Running Postman collection with newman
 
 ```bash
-newman run postman/postman/collections/json-server-testing.postman_collection.json
+newman run postman/postman/collections/json-server-testing.postman_collection.json -g postman/postman/globals/workspace.postman_globals.json
 ```
 
 ## Tools Used
