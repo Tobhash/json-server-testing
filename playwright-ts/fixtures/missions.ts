@@ -2,12 +2,12 @@ import { APIRequestContext, test as base } from "@playwright/test";
 
 // Declare the types of your fixtures.
 type MyFixtures = {
-  preapreMission: string;
+  prepareMissionId: string;
   request: APIRequestContext;
 };
 
 export const test = base.extend<MyFixtures>({
-  preapreMission: async ({ request }, use) => {
+  prepareMissionId: async ({ request }, use) => {
     // Set up the fixture.
     const missionData = {
       title: "TEST MISSION FIXTURE",

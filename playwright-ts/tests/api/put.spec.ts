@@ -1,11 +1,11 @@
 import { test } from "@fixtures/missions";
 
-test("Update mission 2", async ({ request, preapreMission }) => {
-  const missionId = preapreMission; // Use the mission ID from the fixture
+test("Update mission data: PUT", async ({ request, prepareMissionId }) => {
+  const missionId = await prepareMissionId; // Use the mission ID from the fixture
   const updatedMissionData = {
-    title: "UPDATED MISSION",
-    description: "Updated description for the mission.",
-    reward: 1010101,
+    title: "PUT: UPDATED MISSION",
+    description: "PUT: Updated description for the mission.",
+    reward: 5050505,
     status: "completed",
     location: {
       name: "Arasaka Tower",
