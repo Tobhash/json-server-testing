@@ -1,4 +1,3 @@
-
 {
   "compilerOptions": {
     "target": "ES2020",
@@ -9,17 +8,20 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node",
-    "types": ["@playwright/test", "node"],
     "outDir": "dist",
-    "rootDir": "./"
+    "rootDir": "./",
+    "baseUrl": ".",
+    "paths": {
+      "@fixtures/*": ["fixtures/*"]
+    }
   },
   "include": [
     "tests/**/*.ts",
     "helpers/**/*.ts",
+    "fixtures/**/*.ts",
     "playwright.config.ts"
   ],
   "exclude": [
-    "node_modules",
-    "**/*.spec.ts"
+    "node_modules"
   ]
 }
